@@ -35,19 +35,28 @@ namespace ContosoUniversity.Data
             };
 
 
-            Local[] locals = { new Local { address = "Potato 123", name = "Dobry Ziemniak", description = "Lokal specjalizujący się w ziemniakach", logoPath = "https://ih1.redbubble.net/image.301294556.7082/flat,800x800,075,f.u2.jpg" } };
+            Local[] locals = {
+                new Local { address = "Plac Grunwaldzki 22, Wrocław", name = "Pizza Hut", description = "Pizza Hut w pasażu", logoPath = "https://vignette.wikia.nocookie.net/logopedia/images/d/d2/Pizza_Hut_logo.svg/revision/latest/scale-to-width-down/200?cb=20180501084032"},
+                new Local { address = "Plac Grunwaldzki 18, Wrocław", name = "Bravo", description = "Lokal z Pizzą", logoPath = "http://www.bravopizzawc.com/wp-content/uploads/2015/01/Bravo-Logo1.gif"},
+                new Local { address = "Curie-Skłodowskiej 55, Wrocław", name = "Przegryź", description = "Lokal ze schabowym", logoPath = "http://przegryz.com/wp-content/uploads/2017/04/logo-przegryz-2.jpg"},
+                new Local { address = "Plac Grunwaldzki 22, Wrocław", name = "KFC", description = "KFC w pasażu", logoPath = "http://logonoid.com/images/kfc-logo.png"}
+
+            };
 
             LocalDishes[] localDishes = {
-                new LocalDishes { dish = dishes[0], local = locals[0] },
-                new LocalDishes { dish = dishes[1], local = locals[0] },
-                new LocalDishes { dish = dishes[2], local = locals[0] },
+                new LocalDishes { dish = dishes[0], local = locals[2] },
+                new LocalDishes { dish = dishes[1], local = locals[2] },
+                new LocalDishes { dish = dishes[2], local = locals[3] },
                 new LocalDishes { dish = dishes[3], local = locals[0] },
-                new LocalDishes { dish = dishes[4], local = locals[0] },
-                new LocalDishes { dish = dishes[5], local = locals[0] },
-                new LocalDishes { dish = dishes[6], local = locals[0] }};
+                new LocalDishes { dish = dishes[4], local = locals[1] },
+                new LocalDishes { dish = dishes[5], local = locals[3] },
+                new LocalDishes { dish = dishes[6], local = locals[1] }
+            };
 
-            Code[] codes = { new Code { code="POTATO"},
-                new Code{ code = "ZIEMNIAK"}};
+            Code[] codes = {
+                new Code { code="POTATO"},
+                new Code{ code = "ZIEMNIAK"}
+            };
 
 
             for (int i = 0; i < 7; ++i)
