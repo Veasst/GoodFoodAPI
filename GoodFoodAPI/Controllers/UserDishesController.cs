@@ -21,7 +21,7 @@ namespace GoodFoodAPI.Controllers
             _context = context;
         }
 
-        // GET: api/Users/{userId}
+        // GET: api/userDishes/{userId}
         [HttpGet("{userId}")]
         public IActionResult GetFavouriteDishesByUserId([FromRoute] int userId)
         {
@@ -30,7 +30,11 @@ namespace GoodFoodAPI.Controllers
                 return BadRequest(ModelState);
             }
 
-            var dishes = _context.Dish.AsNoTracking().Include(d => d.userDishes).Where(m => m.userDishes.Any(ul => ul.userId == userId));
+            var dishes = from dish in _context.Dish
+                         join dishType in _context.DishType on dish.dishType equals dishType
+                         join userDish in _context.UserDishes on dish.dishId equals userDish.dishId
+                         where userDish.userId == userId
+                         select new { dish.dishId, dish.dishName, dish.description, dish.ingredients, dish.logoPath, dish.price, dishType.dishType };
 
             if (dishes == null)
             {
