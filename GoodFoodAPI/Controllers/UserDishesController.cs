@@ -123,28 +123,28 @@ namespace GoodFoodAPI.Controllers
                 }
             }
 
-            return CreatedAtAction("GetUserDishes", new { id = userDishes.userId }, userDishes);
+            return Ok();
         }
 
-        // DELETE: api/UserDishes/5
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteUserDishes([FromRoute] int id)
+        // DELETE: api/userDishes/
+        [HttpDelete]
+        public async Task<IActionResult> DeleteUserDishes([FromBody] UserDishes userDishes)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var userDishes = await _context.UserDishes.SingleOrDefaultAsync(m => m.userId == id);
-            if (userDishes == null)
+            var userDish = await _context.UserDishes.SingleOrDefaultAsync(m => m.userId == userDishes.userId && m.dishId == userDishes.dishId);
+            if (userDish == null)
             {
                 return NotFound();
             }
 
-            _context.UserDishes.Remove(userDishes);
+            _context.UserDishes.Remove(userDish);
             await _context.SaveChangesAsync();
 
-            return Ok(userDishes);
+            return base.Ok((object)userDish);
         }
 
         private bool UserDishesExists(int id)

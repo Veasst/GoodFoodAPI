@@ -123,7 +123,7 @@ namespace GoodFoodAPI.Controllers
                 }
             }
 
-            return CreatedAtAction("GetUserLocals", new { id = userLocals.userId }, userLocals);
+            return Ok();
         }
 
         // DELETE: api/UserLocals/5
