@@ -50,14 +50,18 @@ namespace ContosoUniversity.Data
                 new Code{ code = "ZIEMNIAK"}};
 
 
-            for (int i = 0; i< 7; ++i)
+            for (int i = 0; i < 7; ++i)
             {
                 locals[0].localDishes.Add(localDishes[i]);
             }
 
             UserDishes[] userDishes =
             {
-                new UserDishes { user=users[0], dish = dishes[0]}
+                new UserDishes { user=users[0], dish = dishes[0]},
+                new UserDishes { user=users[0], dish = dishes[2]},
+                new UserDishes { user=users[0], dish = dishes[3]},
+                new UserDishes { user=users[0], dish = dishes[4]},
+                new UserDishes { user=users[0], dish = dishes[6]},
             };
 
             UserLocals[] userLocals =
@@ -65,7 +69,12 @@ namespace ContosoUniversity.Data
                 new UserLocals {user=users[0], local = locals[0]}
             };
 
-            users[0].userDishes.Add(userDishes[0]);
+            for (int i = 0; i < 5; ++i)
+            {
+                users[0].userDishes.Add(userDishes[i]);
+            }
+
+
             users[0].userLocals.Add(userLocals[0]);
 
             context.Local.AddRange(locals);
