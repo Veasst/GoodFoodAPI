@@ -20,7 +20,7 @@ namespace GoodFoodAPI
             {
                 var services = scope.ServiceProvider;
                 GoodFoodContext context = services.GetRequiredService<GoodFoodContext>();
-                //GoodFoodInitializer.Initialize(context);
+                GoodFoodInitializer.Initialize(context);
 
             }
             host.Run();

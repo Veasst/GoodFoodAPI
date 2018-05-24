@@ -44,24 +44,23 @@ namespace ContosoUniversity.Data
             };
 
             LocalDishes[] localDishes = {
-                new LocalDishes { dish = dishes[0], local = locals[2] },
-                new LocalDishes { dish = dishes[1], local = locals[2] },
-                new LocalDishes { dish = dishes[2], local = locals[3] },
-                new LocalDishes { dish = dishes[3], local = locals[0] },
-                new LocalDishes { dish = dishes[4], local = locals[1] },
-                new LocalDishes { dish = dishes[5], local = locals[3] },
-                new LocalDishes { dish = dishes[6], local = locals[1] }
+                new LocalDishes { dish = dishes[0], local = locals[0] },
+                new LocalDishes { dish = dishes[1], local = locals[1] },
+                new LocalDishes { dish = dishes[2], local = locals[2] },
+                new LocalDishes { dish = dishes[3], local = locals[3] },
+                new LocalDishes { dish = dishes[4], local = locals[0] },
+                new LocalDishes { dish = dishes[5], local = locals[1] },
+                new LocalDishes { dish = dishes[6], local = locals[2] }
             };
 
             Code[] codes = {
-                new Code { code="POTATO"},
-                new Code { code = "ZIEMNIAK"}
+                new Code { code = "POTATO" },
+                new Code { code = "ZIEMNIAK" }
             };
 
-
-            for(int i = 0; i < localDishes.Count(); ++i)
+            for (int i = 0; i < localDishes.Count(); ++i)
             {
-                locals[i%locals.Count()].localDishes.Add(localDishes[i]);
+                locals[i % locals.Count()].localDishes.Add(localDishes[i]);
             }
 
             UserDishes[] userDishes =
