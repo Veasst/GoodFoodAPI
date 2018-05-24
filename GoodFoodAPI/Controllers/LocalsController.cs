@@ -29,6 +29,27 @@ namespace GoodFoodAPI.Controllers
             return Ok(list);
         }
 
+        // GET: api/Locals/bypattern?pattern={pattern}
+        [HttpGet("bypattern")]
+        public IActionResult GetLocalByPattern(string pattern)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var locals = from local in _context.Local
+                         where local.name.StartsWith(pattern) || local.address.StartsWith(pattern)
+                         select new { local.localId, local.name, local.address, local.description, local.logoPath };
+
+            if (locals.Count() == 0)
+            {
+                return NotFound();
+            }
+
+            return Ok(locals);
+        }
+
         // GET: api/Locals/5
         [HttpGet("{id}")]
         public IActionResult GetLocal([FromRoute] int id)
@@ -43,7 +64,7 @@ namespace GoodFoodAPI.Controllers
                          join dish in _context.Dish on localDish.dishId equals dish.dishId
                          join dishType in _context.DishType on dish.dishType equals dishType
                          where local.localId == id
-                         select new { dish.dishId, dish.dishName, dish.description, dish.ingredients, dish.logoPath, dish.price, dishType.dishType};
+                         select new { dish.dishId, dish.dishName, dish.description, dish.ingredients, dish.logoPath, dish.price, dishType.dishType };
 
             if (result.Count() == 0)
             {
@@ -51,6 +72,28 @@ namespace GoodFoodAPI.Controllers
             }
 
             return Ok(result);
+        }
+
+        // GET: api/Locals/dishId?dishId={dishId}
+        [HttpGet("dishId")]
+        public IActionResult GetLocalsByDish(int dishId)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var locals = from local in _context.Local
+                         join localDish in _context.LocalDishes on local.localId equals localDish.localId
+                         where localDish.dishId == dishId
+                         select new { local.localId, local.name, local.address, local.description, local.logoPath };
+
+            if (locals.Count() == 0)
+            {
+                return NotFound();
+            }
+
+            return Ok(locals);
         }
     }
 }
