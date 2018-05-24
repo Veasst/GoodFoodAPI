@@ -133,25 +133,9 @@ namespace GoodFoodAPI.Controllers
             return CreatedAtAction("GetUser", new { id = user.userId }, user);
         }
 
-        // DELETE: api/Users/5
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteUser([FromRoute] int id)
+        private bool UserLocalsExists(int id)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            var user = await _context.User.SingleOrDefaultAsync(m => m.userId == id);
-            if (user == null)
-            {
-                return NotFound();
-            }
-
-            _context.User.Remove(user);
-            await _context.SaveChangesAsync();
-
-            return Ok(user);
+            return _context.UserLocals.Any(e => e.userId == id);
         }
 
         private bool UserExists(int id)
