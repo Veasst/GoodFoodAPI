@@ -55,13 +55,13 @@ namespace ContosoUniversity.Data
 
             Code[] codes = {
                 new Code { code="POTATO"},
-                new Code{ code = "ZIEMNIAK"}
+                new Code { code = "ZIEMNIAK"}
             };
 
 
-            for (int i = 0; i < 7; ++i)
+            for(int i = 0; i < localDishes.Count(); ++i)
             {
-                locals[0].localDishes.Add(localDishes[i]);
+                locals[i%locals.Count()].localDishes.Add(localDishes[i]);
             }
 
             UserDishes[] userDishes =
@@ -85,7 +85,6 @@ namespace ContosoUniversity.Data
 
 
             users[0].userLocals.Add(userLocals[0]);
-
             context.Local.AddRange(locals);
             context.Dish.AddRange(dishes);
             context.DishType.AddRange(dishTypes);
