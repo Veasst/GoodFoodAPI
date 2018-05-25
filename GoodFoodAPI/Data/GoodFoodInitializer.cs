@@ -36,10 +36,10 @@ namespace ContosoUniversity.Data
 
 
             Local[] locals = {
-                new Local { address = "Plac Grunwaldzki 22, Wrocław", name = "Pizza Hut", description = "Pizza Hut w pasażu", logoPath = "https://vignette.wikia.nocookie.net/logopedia/images/d/d2/Pizza_Hut_logo.svg/revision/latest/scale-to-width-down/200?cb=20180501084032"},
-                new Local { address = "Plac Grunwaldzki 18, Wrocław", name = "Bravo", description = "Lokal z Pizzą", logoPath = "http://www.bravopizzawc.com/wp-content/uploads/2015/01/Bravo-Logo1.gif"},
-                new Local { address = "Curie-Skłodowskiej 55, Wrocław", name = "Przegryź", description = "Lokal ze schabowym", logoPath = "http://przegryz.com/wp-content/uploads/2017/04/logo-przegryz-2.jpg"},
-                new Local { address = "Plac Grunwaldzki 22, Wrocław", name = "KFC", description = "KFC w pasażu", logoPath = "http://logonoid.com/images/kfc-logo.png"}
+                new Local { latitude=51.112551f, longitude=17.059255f, address = "Plac Grunwaldzki 22, Wrocław", name = "Pizza Hut", description = "Pizza Hut w pasażu", logoPath = "https://vignette.wikia.nocookie.net/logopedia/images/d/d2/Pizza_Hut_logo.svg/revision/latest/scale-to-width-down/200?cb=20180501084032"},
+                new Local { latitude=51.111455f, longitude=17.058413f, address = "Plac Grunwaldzki 18, Wrocław", name = "Bravo", description = "Lokal z Pizzą", logoPath = "http://www.bravopizzawc.com/wp-content/uploads/2015/01/Bravo-Logo1.gif"},
+                new Local { latitude=51.109788f, longitude=17.064000f, address = "Curie-Skłodowskiej 55, Wrocław", name = "Przegryź", description = "Lokal ze schabowym", logoPath = "http://przegryz.com/wp-content/uploads/2017/04/logo-przegryz-2.jpg"},
+                new Local { latitude=51.112551f, longitude=17.059255f, address = "Plac Grunwaldzki 22, Wrocław", name = "KFC", description = "KFC w pasażu", logoPath = "http://logonoid.com/images/kfc-logo.png"}
 
             };
 

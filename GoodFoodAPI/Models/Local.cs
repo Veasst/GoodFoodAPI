@@ -12,6 +12,8 @@ namespace GoodFoodAPI.Models
         public string description { get; set; }
         public string logoPath { get; set; }
         public string address { get; set; }
+        public float latitude { get; set; }
+        public float longitude { get; set; }
 
         public virtual ICollection<LocalDishes> localDishes { get; set; } = new HashSet<LocalDishes>();
         public virtual ICollection<UserLocals> userLocals { get; set; } = new HashSet<UserLocals>();
