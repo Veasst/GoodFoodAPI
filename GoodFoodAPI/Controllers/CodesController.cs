@@ -110,6 +110,37 @@ namespace GoodFoodAPI.Controllers
             return CreatedAtAction("GetCode", new { id = code.codeId }, code);
         }
 
+        // POST: api/Codes
+        [HttpPost]
+        public async Task<IActionResult> PostCode([FromBody] int userId, string code)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var result = await _context.Code.SingleOrDefaultAsync(c => c.code.Equals(code));
+
+            if (result == null)
+            {
+                return NotFound();
+            }
+
+            var user = await _context.User.SingleOrDefaultAsync(u => u.userId == userId);
+            user.stamps++;
+            if (user.stamps == 10)
+            {
+                user.freeDishes++;
+                user.stamps = 0;
+            }
+
+            _context.Update(user);
+
+            await _context.SaveChangesAsync();
+
+            return Ok();
+        }
+
         // DELETE: api/Codes/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteCode([FromRoute] int id)
