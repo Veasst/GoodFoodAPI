@@ -29,6 +29,14 @@ namespace GoodFoodAPI.Controllers
             return Ok(list);
         }
 
+        // GET: api/Locals/1
+        [HttpGet("{id}")]
+        public ActionResult GetLocal(int id)
+        {
+            var local = _context.Local.Include(l => l.localDishes).ThenInclude(dish => dish.dish).ThenInclude(dish => dish.dishType).SingleOrDefault(l => l.localId == id);
+            return Ok(local);
+        }
+
         // GET: api/Locals/bypattern?pattern={pattern}
         [HttpGet("bypattern")]
         public IActionResult GetLocalByPattern(string pattern)
@@ -48,30 +56,6 @@ namespace GoodFoodAPI.Controllers
             }
 
             return Ok(locals);
-        }
-
-        // GET: api/Locals/5
-        [HttpGet("{id}")]
-        public IActionResult GetLocal([FromRoute] int id)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            var result = from local in _context.Local
-                         join localDish in _context.LocalDishes on local.localId equals localDish.localId
-                         join dish in _context.Dish on localDish.dishId equals dish.dishId
-                         join dishType in _context.DishType on dish.dishType equals dishType
-                         where local.localId == id
-                         select new { dish.dishId, dish.dishName, dish.description, dish.ingredients, dish.logoPath, dish.price, dishType.dishType };
-
-            if (result.Count() == 0)
-            {
-                return NotFound();
-            }
-
-            return Ok(result);
         }
 
         // GET: api/Locals/dishId?dishId={dishId}
