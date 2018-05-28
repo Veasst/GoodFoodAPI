@@ -7,7 +7,7 @@ namespace GoodFoodAPI.Data
     {
         public GoodFoodContext(DbContextOptions<GoodFoodContext> options) : base(options)
         {
-            
+
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -53,6 +53,21 @@ namespace GoodFoodAPI.Data
                 .HasOne(ld => ld.local)
                 .WithMany(d => d.userLocals)
                 .HasForeignKey(ld => ld.localId);
+
+            // orderDishes
+            modelBuilder.Entity<OrderDishes>()
+                .HasKey(od => new { od.orderId, od.dishId });
+
+            modelBuilder.Entity<OrderDishes>()
+                .HasOne(od => od.order)
+                .WithMany(o => o.orderDishes)
+                .HasForeignKey(od => od.orderId);
+
+            modelBuilder.Entity<OrderDishes>()
+                .HasOne(od => od.dish)
+                .WithMany(o => o.orderDishes)
+                .HasForeignKey(od => od.dishId);
+
         }
 
         public DbSet<User> User { get; set; }
@@ -63,6 +78,8 @@ namespace GoodFoodAPI.Data
         public DbSet<LocalDishes> LocalDishes { get; set; }
         public DbSet<GoodFoodAPI.Models.UserDishes> UserDishes { get; set; }
         public DbSet<GoodFoodAPI.Models.UserLocals> UserLocals { get; set; }
+        public DbSet<Order> Order { get; set; }
+        public DbSet<OrderDishes> OrderDishes {get; set;}
         //public DbSet<GoodFoodAPI.Models.Menu> Menu { get; set; }
     }
 }

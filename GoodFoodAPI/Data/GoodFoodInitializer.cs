@@ -139,7 +139,6 @@ namespace ContosoUniversity.Data
                 users[0].userDishes.Add(userDishes[i]);
             }
 
-
             users[0].userLocals.Add(userLocals[0]);
             context.Local.AddRange(locals);
             context.Dish.AddRange(dishes);

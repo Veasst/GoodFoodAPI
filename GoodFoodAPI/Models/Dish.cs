@@ -18,5 +18,6 @@ namespace GoodFoodAPI.Models
 
         public virtual ICollection<LocalDishes> localDishes { get; set; } = new HashSet<LocalDishes>();
         public virtual ICollection<UserDishes> userDishes { get; set; } = new HashSet<UserDishes>();
+        public virtual ICollection<OrderDishes> orderDishes { get; set; } = new HashSet<OrderDishes>();
     }
 }
