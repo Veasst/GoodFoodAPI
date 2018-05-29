@@ -16,5 +16,6 @@ namespace GoodFoodAPI.Models
         public virtual Dish dish { get; set; }
         public float price { get; set; }
         public int amount { get; set; }
+        public bool finished { get; set; } = false;
     }
 }
