@@ -96,7 +96,7 @@ namespace GoodFoodAPI.Controllers
         }
 
         // POST: api/Codes
-        [HttpPost]
+        [HttpPost("addCode")]
         public async Task<IActionResult> PostCode([FromBody] Code code)
         {
             if (!ModelState.IsValid)
@@ -107,7 +107,7 @@ namespace GoodFoodAPI.Controllers
             _context.Code.Add(code);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetCode", new { id = code.codeId }, code);
+            return Ok(code);
         }
 
         // POST: api/Codes
