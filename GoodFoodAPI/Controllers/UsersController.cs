@@ -27,10 +27,7 @@ namespace GoodFoodAPI.Controllers
             {
                 if (u.username.Equals(username) && u.password.Equals(password))
                 {
-                    Dictionary<string, int > dictionary = new Dictionary<string, int>();
-                    dictionary.Add("userId", u.userId);
-
-                    return Ok(dictionary);
+                    return Ok(u);
                 }
             }
 
